@@ -1,0 +1,33 @@
+GET http://localhost:8080/api/ingredients
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/ingredients
+Content-Type: application/json
+
+{"name": "ing1",
+  "type": "KG",
+"quantity" : 3}
+###
+
+POST http://localhost:8080/api/ingredients
+Content-Type: application/json
+
+{"name": "ing2",
+  "type": "DKG",
+  "quantity" : 13}
+
+###
+PUT http://localhost:8080/api/ingredients/1
+Content-Type: application/json
+
+{"name": "ing12",
+  "type": "KG",
+  "quantity" : 32}
+
+###
+DELETE http://localhost:8080/api/ingredients/1
+Content-Type: application/json
+
+###
