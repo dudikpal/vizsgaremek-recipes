@@ -1,0 +1,56 @@
+package training.vizsgaremekrecipes.creator;
+
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@AllArgsConstructor
+public class CreatorService {
+
+    private ModelMapper modelMapper;
+
+    private CreatorRepository creatorRepository;
+
+
+    public List<CreatorDto> findAllCreator() {
+        return creatorRepository.findAll().stream()
+                .map(c -> modelMapper.map(c, CreatorDto.class))
+                .collect(Collectors.toList());
+    }
+
+
+    public CreatorDto findCreatorById(long id) {
+        return modelMapper.map(getCreatorById(id), CreatorDto.class);
+    }
+
+    private Creator getCreatorById(long id) {
+        return creatorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("cannot find creator with id: " + id));
+    }
+
+
+    public CreatorDto createCreator(CreateCreatorCommand command) {
+        Creator creator = new Creator(command.getName(), command.getSsn());
+        creatorRepository.save(creator);
+        return modelMapper.map(creator, CreatorDto.class);
+    }
+
+
+    @Transactional
+    public CreatorDto updateCreatorById(long id, UpdateCreatorCommand command) {
+        Creator creator = getCreatorById(id);
+        creator.setName(command.getName());
+        creator.setSsn(command.getSsn());
+        //creatorRepository.save(creator);
+        return modelMapper.map(creator, CreatorDto.class);
+    }
+
+    public void deleteCreatorById(long id) {
+        long idToDelete = getCreatorById(id).getId();
+        creatorRepository.deleteById(idToDelete);
+    }
+}

@@ -1,0 +1,32 @@
+GET http://localhost:8080/api/creators
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/creators
+Content-Type: application/json
+
+    {"name": "creator1",
+      "ssn": "DFG133"}
+###
+
+POST http://localhost:8080/api/creators
+Content-Type: application/json
+
+{"name": "creator2",
+"ssn": "489KSI"
+}
+
+###
+PUT http://localhost:8080/api/creators/1
+Content-Type: application/json
+
+{"name": "creator1",
+  "ssn": "777SSS"
+}
+
+###
+DELETE http://localhost:8080/api/creators/1
+Content-Type: application/json
+
+###
