@@ -11,7 +11,6 @@ import org.springframework.hateoas.mediatype.problem.Problem;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.jdbc.Sql;
 
-import javax.persistence.GeneratedValue;
 
 import java.util.List;
 
