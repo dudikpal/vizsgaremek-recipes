@@ -14,7 +14,7 @@ POST http://localhost:8080/api/creators
 Content-Type: application/json
 
 {"name": "creator2",
-"ssn": "489KSI"
+"ssn": "485KSI"
 }
 
 ###

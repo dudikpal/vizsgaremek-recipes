@@ -25,7 +25,7 @@ public class CreatorController {
     }
 
 
-    @PostMapping
+    @PutMapping
     public CreatorDto createCreator(@RequestBody CreateCreatorCommand command) {
         return creatorService.createCreator(command);
     }

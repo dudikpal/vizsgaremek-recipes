@@ -3,8 +3,10 @@ package training.vizsgaremekrecipes.creator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import training.vizsgaremekrecipes.recipe.Recipe;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,8 +23,18 @@ public class Creator {
 
     private String ssn;
 
+    /*@OneToMany(mappedBy = "creator", cascade = CascadeType.PERSIST)
+    private List<Recipe> recipes;*/
+
+
     public Creator(String name, String ssn) {
         this.name = name;
         this.ssn = ssn;
     }
+
+
+    /*public void addRecipe(Recipe recipe) {
+        recipes.add(recipe);
+        recipe.setCreator(this);
+    }*/
 }

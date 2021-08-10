@@ -22,11 +22,9 @@ public class Ingredient {
     @Enumerated(value = EnumType.STRING)
     private QuantityType type;
 
-    private int quantity;
 
-    public Ingredient(String name, QuantityType type, int quantity) {
+    public Ingredient(String name, QuantityType type) {
         this.name = name;
         this.type = type;
-        this.quantity = quantity;
     }
 }

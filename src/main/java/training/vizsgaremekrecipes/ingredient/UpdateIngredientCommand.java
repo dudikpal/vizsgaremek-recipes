@@ -12,6 +12,4 @@ public class UpdateIngredientCommand {
     private String name;
 
     private QuantityType type;
-
-    private int quantity;
 }

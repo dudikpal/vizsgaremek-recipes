@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateIngredientCommand {
+public class IngredientWithQuantityDto {
 
-    private String name;
+    private IngredientDto ingredient;
 
-    private QuantityType type;
+    private int quantity;
 }

@@ -31,12 +31,12 @@ class IngredientControllerTest {
     TestRestTemplate template;
 
     @Test
-    void find_All_Creator_Test() {
+    void find_All_Ingredient_Test() {
         template.postForObject(URL,
-                new CreateIngredientCommand("ing1", QuantityType.DKG, 3),
+                new CreateIngredientCommand("ing1", QuantityType.DKG),
                 IngredientDto.class);
         template.postForObject(URL,
-                new CreateIngredientCommand("ing2", QuantityType.DL, 2),
+                new CreateIngredientCommand("ing2", QuantityType.DL),
                 IngredientDto.class);
 
         List<IngredientDto> ingredients = template.exchange(URL,
@@ -47,15 +47,15 @@ class IngredientControllerTest {
 
         assertThat(ingredients)
                 .hasSize(2)
-                .extracting(IngredientDto::getQuantity)
-                .containsExactly(3, 2);
+                .extracting(IngredientDto::getType)
+                .containsExactly(QuantityType.DKG, QuantityType.DL);
     }
 
 
     @Test
-    void find_Creator_By_Id_Test() {
+    void find_Ingredient_By_Id_Test() {
         IngredientDto ingredient = template.postForObject(URL,
-                new CreateIngredientCommand("ing1", QuantityType.DKG, 3),
+                new CreateIngredientCommand("ing1", QuantityType.DKG),
                 IngredientDto.class);
 
         long id = ingredient.getId();
@@ -68,15 +68,15 @@ class IngredientControllerTest {
 
 
     @Test
-    void update_Creator_By_Id_Test() {
+    void update_Ingredient_By_Id_Test() {
         IngredientDto ingredient = template.postForObject(URL,
-                new CreateIngredientCommand("ing1", QuantityType.DKG, 3),
+                new CreateIngredientCommand("ing1", QuantityType.DKG),
                 IngredientDto.class);
 
         long id = ingredient.getId();
 
         template.put(URL + "/" + id,
-                new UpdateIngredientCommand("newIng2", QuantityType.DKG, 3));
+                new UpdateIngredientCommand("newIng2", QuantityType.DKG));
 
         ingredient = template.getForObject(URL + "/" + id,
                 IngredientDto.class);
@@ -86,9 +86,9 @@ class IngredientControllerTest {
 
 
     @Test
-    void delete_Creator_By_Id_Test() {
+    void delete_Ingredient_By_Id_Test() {
         IngredientDto ingredient = template.postForObject(URL,
-                new CreateIngredientCommand("ing1", QuantityType.DKG, 3),
+                new CreateIngredientCommand("ing1", QuantityType.DKG),
                 IngredientDto.class);
 
         long id = ingredient.getId();
