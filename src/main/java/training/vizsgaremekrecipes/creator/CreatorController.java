@@ -2,6 +2,7 @@ package training.vizsgaremekrecipes.creator;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import training.vizsgaremekrecipes.recipe.CreateRecipeCommand;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class CreatorController {
     }
 
 
-    @PutMapping
+    @PostMapping
     public CreatorDto createCreator(@RequestBody CreateCreatorCommand command) {
         return creatorService.createCreator(command);
     }
@@ -40,6 +41,13 @@ public class CreatorController {
     @DeleteMapping("/{id}")
     public void deleteCreatorById(@PathVariable long id) {
         creatorService.deleteCreatorById(id);
+    }
+
+
+    @PostMapping("/{id}/recipes")
+    public CreatorDto addRecipe(@PathVariable("id") long id,
+                                @RequestBody CreateRecipeCommand command) {
+        return creatorService.addRecipe(id, command);
     }
 }
 

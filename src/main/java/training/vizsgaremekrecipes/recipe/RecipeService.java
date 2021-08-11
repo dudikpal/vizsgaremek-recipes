@@ -3,8 +3,8 @@ package training.vizsgaremekrecipes.recipe;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import training.vizsgaremekrecipes.creator.*;
 
-import javax.persistence.SqlResultSetMapping;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,22 +25,26 @@ public class RecipeService {
     }
 
     public RecipeDto findRecipeById(long id) {
-        return modelMapper.map(getRecipe(id), RecipeDto.class);
+        return modelMapper.map(getRecipeById(id), RecipeDto.class);
     }
 
-    private Recipe getRecipe(long id) {
+    private Recipe getRecipeById(long id) {
         return recipeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("cannot find Recipe"));
     }
 
     public RecipeDto createRecipe(CreateRecipeCommand command) {
         Recipe recipe = new Recipe(command.getName(), command.getDescription());
+        /*Creator creator = creatorService.findCreatorByName(command.getCreatorName());
+        if (creator == null) {
+            creator = new Creator(command.getCreatorName())
+        }*/
         recipeRepository.save(recipe);
         return modelMapper.map(recipe, RecipeDto.class);
     }
 
     @Transactional
     public RecipeDto updateRecipe(long id, UpdateRecipeCommand command) {
-        Recipe recipe = getRecipe(id);
+        Recipe recipe = getRecipeById(id);
         recipe.setName(command.getName());
         recipe.setDescription(command.getDescription());
         return modelMapper.map(recipe, RecipeDto.class);
@@ -49,4 +53,6 @@ public class RecipeService {
     public void deleteRecipeById(long id) {
         recipeRepository.deleteById(id);
     }
+
+
 }

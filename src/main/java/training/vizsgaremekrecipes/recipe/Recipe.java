@@ -2,6 +2,7 @@ package training.vizsgaremekrecipes.recipe;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import training.vizsgaremekrecipes.creator.Creator;
 
@@ -22,10 +23,9 @@ public class Recipe {
 
     private String description;
 
-    /*@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "creator_id")
-    private Creator creator;*/
-
+    private Creator creator;
 
     public Recipe(String name, String description) {
         this.name = name;
@@ -33,9 +33,6 @@ public class Recipe {
     }
 
 
-    /*public void addCreator(Creator creator) {
-        setCreator(creator);
-        creator.addRecipe(this);
-    }*/
+
 
 }

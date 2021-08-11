@@ -10,12 +10,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.mediatype.problem.Problem;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.jdbc.Sql;
-import training.vizsgaremekrecipes.recipe.CreateRecipeCommand;
-import training.vizsgaremekrecipes.recipe.RecipeDto;
-import training.vizsgaremekrecipes.recipe.UpdateRecipeCommand;
-
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 

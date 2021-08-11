@@ -10,6 +10,20 @@ Content-Type: application/json
       "ssn": "DFG133"}
 ###
 
+POST http://localhost:8080/api/creators/1/recipes
+Content-Type: application/json
+
+{"name": "recipe1",
+"description":  "desc1"}
+###
+
+POST http://localhost:8080/api/creators/1/recipes
+Content-Type: application/json
+
+{"name": "recipe2",
+  "description":  "desc2"}
+###
+
 POST http://localhost:8080/api/creators
 Content-Type: application/json
 

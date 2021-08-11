@@ -23,9 +23,8 @@ public class Creator {
 
     private String ssn;
 
-    /*@OneToMany(mappedBy = "creator", cascade = CascadeType.PERSIST)
-    private List<Recipe> recipes;*/
-
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.PERSIST)
+    private List<Recipe> recipes;
 
     public Creator(String name, String ssn) {
         this.name = name;
@@ -33,8 +32,9 @@ public class Creator {
     }
 
 
-    /*public void addRecipe(Recipe recipe) {
+    public void addRecipe(Recipe recipe) {
         recipes.add(recipe);
         recipe.setCreator(this);
-    }*/
+    }
+
 }

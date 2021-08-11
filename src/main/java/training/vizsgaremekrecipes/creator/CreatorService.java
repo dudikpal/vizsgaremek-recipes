@@ -3,6 +3,8 @@ package training.vizsgaremekrecipes.creator;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import training.vizsgaremekrecipes.recipe.CreateRecipeCommand;
+import training.vizsgaremekrecipes.recipe.Recipe;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -18,6 +20,9 @@ public class CreatorService {
 
 
     public List<CreatorDto> findAllCreator() {
+        /*return creatorRepository.findAll().stream()
+                .map(c -> modelMapper.map(c, CreatorDto.class))
+                .collect(Collectors.toList());*/
         return creatorRepository.findAll().stream()
                 .map(c -> modelMapper.map(c, CreatorDto.class))
                 .collect(Collectors.toList());
@@ -32,7 +37,7 @@ public class CreatorService {
         return creatorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("cannot find creator with id: " + id));
     }
 
-
+    @Transactional
     public CreatorDto createCreator(CreateCreatorCommand command) {
         Creator creator = new Creator(command.getName(), command.getSsn());
         creatorRepository.save(creator);
@@ -52,5 +57,18 @@ public class CreatorService {
     public void deleteCreatorById(long id) {
         long idToDelete = getCreatorById(id).getId();
         creatorRepository.deleteById(idToDelete);
+    }
+
+
+    public Creator findCreatorByName(String name) {
+        return creatorRepository.findCreatorByName(name);
+    }
+
+    @Transactional
+    public CreatorDto addRecipe(long id, CreateRecipeCommand command) {
+        Creator creator = getCreatorById(id);
+        Recipe recipe = new Recipe(command.getName(), command.getDescription());
+        creator.addRecipe(recipe);
+        return modelMapper.map(creator, CreatorDto.class);
     }
 }
