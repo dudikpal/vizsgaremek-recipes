@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Sql(statements = "delete from creators")
+@Sql(statements = "delete from recipes; delete from creators;")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class CreatorControllerTest {
 
