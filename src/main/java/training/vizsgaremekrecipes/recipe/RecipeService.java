@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import training.vizsgaremekrecipes.creator.*;
+import training.vizsgaremekrecipes.ingredient.CreateIngredientCommand;
+import training.vizsgaremekrecipes.ingredient.Ingredient;
+import training.vizsgaremekrecipes.ingredient.IngredientRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -16,6 +19,8 @@ public class RecipeService {
     private ModelMapper modelMapper;
 
     private RecipeRepository recipeRepository;
+
+    private IngredientRepository ingredientRepository;
 
 
     public List<RecipeDto> getRecipes() {
@@ -54,5 +59,11 @@ public class RecipeService {
         recipeRepository.deleteById(id);
     }
 
-
+    @Transactional
+    public RecipeDto addIngredient(Long id, AddIngredientToRecipeCommand command) {
+        Recipe recipe = getRecipeById(id);
+        Ingredient ingredient = ingredientRepository.getById(command.getIngredientId());
+        recipe.addIngredient(ingredient);
+        return modelMapper.map(recipe, RecipeDto.class);
+    }
 }

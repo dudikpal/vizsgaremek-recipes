@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Sql(statements = "delete from recipes")
+@Sql(statements = "delete from creators; delete from recipes")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class RecipeControllerTest {
     

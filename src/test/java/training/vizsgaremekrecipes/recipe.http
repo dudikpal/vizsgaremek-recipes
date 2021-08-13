@@ -7,13 +7,19 @@ POST http://localhost:8080/api/recipes
 Content-Type: application/json
 
 {
-  "name": "recipe1",
+  "name": "recipe11",
   "description": "leiras1"
 }
 
 
 ###
+POST http://localhost:8080/api/recipes/1/ingredients
+Content-Type: application/json
 
+{
+  "ingredientId": "1"
+}
+###
 POST http://localhost:8080/api/recipes
 Content-Type: application/json
 

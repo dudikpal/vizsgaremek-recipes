@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import training.vizsgaremekrecipes.recipe.CreateRecipeCommand;
 import training.vizsgaremekrecipes.recipe.Recipe;
+import training.vizsgaremekrecipes.recipe.RecipeRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -17,6 +18,8 @@ public class CreatorService {
     private ModelMapper modelMapper;
 
     private CreatorRepository creatorRepository;
+
+    private RecipeRepository recipeRepository;
 
 
     public List<CreatorDto> findAllCreator() {
@@ -61,14 +64,26 @@ public class CreatorService {
 
 
     public Creator findCreatorByName(String name) {
-        return creatorRepository.findCreatorByName(name);
+        return creatorRepository.findCreatorByName(name).get();
     }
 
     @Transactional
-    public CreatorDto addRecipe(long id, CreateRecipeCommand command) {
+    public CreatorDto addRecipe(long id, AddRecipeToCreatorCommand command) {
         Creator creator = getCreatorById(id);
-        Recipe recipe = new Recipe(command.getName(), command.getDescription());
+        Recipe recipe = recipeRepository.getById(command.getRecipeId());
         creator.addRecipe(recipe);
         return modelMapper.map(creator, CreatorDto.class);
     }
+
+
+    /*@Transactional
+    public CreatorDto addRecipe(CreateCreatorCommand creatorCommand, CreateRecipeCommand recipeCommand) {
+        Creator creator = creatorRepository.findCreatorByName(creatorCommand.getName())
+                .orElseGet(() -> creatorRepository.save(
+                        new Creator(creatorCommand.getName(), creatorCommand.getSsn())
+                ));
+        Recipe recipe = new Recipe(recipeCommand.getName(), recipeCommand.getDescription());
+        creator.addRecipe(recipe);
+        return modelMapper.map(creator, CreatorDto.class);
+    }*/
 }

@@ -13,8 +13,7 @@ Content-Type: application/json
 POST http://localhost:8080/api/creators/1/recipes
 Content-Type: application/json
 
-{"name": "recipe1",
-"description":  "desc1"}
+{"recipeId": "1"}
 ###
 
 POST http://localhost:8080/api/creators/1/recipes

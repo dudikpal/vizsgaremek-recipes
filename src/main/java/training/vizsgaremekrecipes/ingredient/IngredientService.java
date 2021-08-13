@@ -36,7 +36,7 @@ public class IngredientService {
 
 
     public IngredientDto createIngredient(CreateIngredientCommand command) {
-        Ingredient ingredient = new Ingredient(command.getName(), command.getType());
+        Ingredient ingredient = new Ingredient(command.getName(), command.getType(), command.getQuantity());
         ingredientRepository.save(ingredient);
         return modelMapper.map(ingredient, IngredientDto.class);
     }

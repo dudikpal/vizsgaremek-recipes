@@ -3,7 +3,11 @@ package training.vizsgaremekrecipes.recipe;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import training.vizsgaremekrecipes.creator.Creator;
+import training.vizsgaremekrecipes.ingredient.Ingredient;
+import training.vizsgaremekrecipes.ingredient.IngredientDto;
+
+import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -16,5 +20,5 @@ public class RecipeDto {
 
     private String description;
 
-    //private Creator creator;
+    private List<IngredientDto> ingredients;
 }

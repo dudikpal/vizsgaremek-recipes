@@ -2,6 +2,7 @@ package training.vizsgaremekrecipes.creator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import training.vizsgaremekrecipes.recipe.Recipe;
 
@@ -24,6 +25,7 @@ public class Creator {
     private String ssn;
 
     @OneToMany(mappedBy = "creator", cascade = CascadeType.PERSIST)
+    @EqualsAndHashCode.Exclude
     private List<Recipe> recipes;
 
     public Creator(String name, String ssn) {
