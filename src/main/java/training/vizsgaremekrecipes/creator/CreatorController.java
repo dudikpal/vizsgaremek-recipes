@@ -70,11 +70,5 @@ public class CreatorController {
         return creatorService.addRecipe(id, command);
     }
 
-
-    /*@PostMapping("/recipes")
-    public CreatorDto addRecipe(@RequestBody CreateCreatorCommand creatorCommand,
-                                @RequestBody CreateRecipeCommand recipecommand) {
-        return creatorService.addRecipe(creatorCommand, recipecommand);
-    }*/
 }
 
