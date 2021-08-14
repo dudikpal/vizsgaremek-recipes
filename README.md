@@ -1,4 +1,4 @@
-#Recipe Manager Application
+# Recipe Manager Application
 
 ### Program
 A program feladata a receptek létrehozása, kezelése, úgy mint perzisztálás, adatok összekapcsolása, változtatása, törlése.
@@ -50,3 +50,12 @@ Attribútumai:
 | POST         | `"api/ingredients"`      | létrehoz egy hozzávalót            |
 | PUT          | `"api/ingredients/{id}"` | módosít egy hozzávalót id alapján  |
 | DELETE       | `"api/ingredients/{id}"` | töröl egy hozzávalót id alapján    |
+
+Adatbázis és felhasználó létrehozása
+```sql
+use mysql;
+create schema if not exists recipes default character set utf8 collate utf8_hungarian_ci;
+
+create user 'recipes'@'localhost' identified by 'recipes';
+grant all on *.* to 'recipes'@'localhost';
+```

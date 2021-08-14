@@ -39,10 +39,6 @@ public class RecipeService {
 
     public RecipeDto createRecipe(CreateRecipeCommand command) {
         Recipe recipe = new Recipe(command.getName(), command.getDescription());
-        /*Creator creator = creatorService.findCreatorByName(command.getCreatorName());
-        if (creator == null) {
-            creator = new Creator(command.getCreatorName())
-        }*/
         recipeRepository.save(recipe);
         return modelMapper.map(recipe, RecipeDto.class);
     }

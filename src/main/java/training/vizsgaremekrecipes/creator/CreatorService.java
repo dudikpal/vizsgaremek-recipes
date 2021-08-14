@@ -3,7 +3,6 @@ package training.vizsgaremekrecipes.creator;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import training.vizsgaremekrecipes.recipe.CreateRecipeCommand;
 import training.vizsgaremekrecipes.recipe.Recipe;
 import training.vizsgaremekrecipes.recipe.RecipeRepository;
 
@@ -75,15 +74,4 @@ public class CreatorService {
         return modelMapper.map(creator, CreatorDto.class);
     }
 
-
-    /*@Transactional
-    public CreatorDto addRecipe(CreateCreatorCommand creatorCommand, CreateRecipeCommand recipeCommand) {
-        Creator creator = creatorRepository.findCreatorByName(creatorCommand.getName())
-                .orElseGet(() -> creatorRepository.save(
-                        new Creator(creatorCommand.getName(), creatorCommand.getSsn())
-                ));
-        Recipe recipe = new Recipe(recipeCommand.getName(), recipeCommand.getDescription());
-        creator.addRecipe(recipe);
-        return modelMapper.map(creator, CreatorDto.class);
-    }*/
 }
